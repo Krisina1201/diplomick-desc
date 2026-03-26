@@ -1,0 +1,102 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d" d:DesignWidth="900" d:DesignHeight="600"
+        x:Class="Diplom.QrWindow"
+		xmlns:models="clr-namespace:Diplom.Models"
+        WindowStartupLocation="CenterScreen"
+        Title="FunkyPop - Управление аудиториями"
+        Background="#f5f5f5">
+
+
+	<Grid RowDefinitions="Auto,*,Auto">
+		<!-- Верхняя панель -->
+		<Border Background="#283593" Grid.Row="0" Padding="20" CornerRadius="0">
+			<TextBlock Text="FunkyPop"
+                       Foreground="White"
+                       FontSize="28"
+                       FontWeight="Bold"
+                       HorizontalAlignment="Center"/>
+		</Border>
+
+		<!-- Основной контент -->
+		<Grid Grid.Row="1" Margin="40" ColumnDefinitions="*,*,*,*" RowDefinitions="Auto,*">
+			<!-- Кнопки навигации -->
+			<Button Content="Аудитории"
+                    Grid.Column="0"
+                    Margin="10"
+                    Height="50"
+                    Click="ClassroomClick"/>
+			<Button Content="Инвентарь"
+                    Grid.Column="1"
+                    Margin="10"
+                    Height="50"
+                    Click="InventoryClick"/>
+			<Button Content="Сотрудники"
+                    Grid.Column="2"
+                    Margin="10"
+                    Height="50"
+                    Click="PeopleClick"/>
+			<Button Content="Статистика"
+                    Grid.Column="3"
+                    Margin="10"
+                    Height="50"/>
+
+			<!-- Область QR-кода -->
+			<Border Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="4"
+                    Classes="card"
+                    Margin="20"
+                    Padding="30">
+				<Grid ColumnDefinitions="1*,2*" RowDefinitions="Auto,*,Auto">
+					<TextBlock Text="Генератор QR-кодов"
+                               Classes="header"
+                               Grid.ColumnSpan="2"
+                               Margin="0,0,0,20"/>
+
+					<!-- Левая панель - выбор кабинета -->
+					<StackPanel Grid.Column="0" Spacing="15">
+						<TextBlock Text="Выберите кабинет" Classes="subheader"/>
+						<ComboBox x:Name="ClassroomComboBox"
+                                  PlaceholderText="Кабинет..."
+                                  Height="40"/>
+						<Button Content="Сгенерировать QR-код"
+                                Click="Generate_qr_click"
+                                Height="40"/>
+					</StackPanel>
+
+					<!-- Правая панель - QR-код -->
+					<Border Grid.Column="1"
+                            Background="White"
+                            CornerRadius="8"
+                            Margin="20,0,0,0"
+                            Padding="20"
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center">
+						<Image x:Name="QrCodeImage"
+                               Width="250"
+                               Height="250"
+                               Stretch="Uniform"/>
+					</Border>
+
+					<!-- Кнопка сохранения -->
+					<Button Content="Сохранить изображение"
+                            Grid.Row="2"
+                            Grid.Column="1"
+                            HorizontalAlignment="Right"
+                            Margin="20,20,0,0"
+                            Height="40"
+                            Width="200"/>
+				</Grid>
+			</Border>
+		</Grid>
+
+		<!-- Нижняя панель -->
+		<Border Background="#e0e0e0" Grid.Row="2" Padding="10">
+			<TextBlock Text="© 2024 FunkyPop - Дипломный проект"
+                       Foreground="#757575"
+                       HorizontalAlignment="Center"
+                       FontSize="12"/>
+		</Border>
+	</Grid>
+</Window>
