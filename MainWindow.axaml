@@ -19,7 +19,7 @@
 
 		<StackPanel VerticalAlignment="Center" Spacing="25">
 			<!-- Логотип/Заголовок -->
-			<TextBlock Text="FunkyPop"
+			<TextBlock Text="КСИПТ"
                        FontSize="32"
                        FontWeight="Bold"
                        Foreground="#283593"

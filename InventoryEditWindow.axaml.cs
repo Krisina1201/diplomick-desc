@@ -34,18 +34,13 @@ public partial class InventoryEditWindow : Window
         using (var context = new FankyPopContext())
         {
             // Загружаем типы инвентаря
-            var types = context.InventoryTypes.ToList();
+            var types = context.InventoryTypes.Select(e => e.InventoryTypeTitle).ToList();
             ItemTypeComboBox.ItemsSource = types;
 
             // Загружаем активные аудитории
             var classrooms = context.Classrooms
                 .Where(c => c.IsActive == true)
-                .Select(c => new ClassroomItem
-                {
-                    Id = c.Id,
-                    RoomNumber = c.RoomNumber,
-                    RoomName = c.RoomName
-                })
+                .Select(c => c.RoomNumber)
                 .ToList();
 
             ClassroomComboBox.ItemsSource = classrooms;
@@ -53,13 +48,11 @@ public partial class InventoryEditWindow : Window
             // Устанавливаем выбранные значения, если редактируем
             if (_currentInventory != null)
             {
-                // Выбираем тип
-                var selectedType = types.FirstOrDefault(t => t.InventoryTypeId == _currentInventory.ItemType);
-                ItemTypeComboBox.SelectedItem = selectedType;
+                ItemTypeComboBox.SelectedItem = _currentInventory.ItemTypeNavigation.InventoryTypeTitle;
 
-                // Выбираем аудиторию
-                var selectedClassroom = classrooms.FirstOrDefault(c => c.Id == _currentInventory.ClassroomId);
-                ClassroomComboBox.SelectedItem = selectedClassroom;
+                var classRoomNumber = context.Classrooms.FirstOrDefault(e => e.Id == _currentInventory.ClassroomId)!.RoomNumber;
+
+                ClassroomComboBox.SelectedItem = classRoomNumber;
             }
         }
     }

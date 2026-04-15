@@ -21,8 +21,12 @@
 		<Border Grid.Row="1" Classes="card" Padding="15" Margin="0,0,0,20">
 			<StackPanel Orientation="Horizontal" Spacing="10" HorizontalAlignment="Right">
 				<ComboBox x:Name="sortByTitle"
-                          PlaceholderText="Сортировка по названию"
-                          Width="200"/>
+                          PlaceholderText="Сортировка по номеру"
+						  VerticalAlignment="Center"
+						  SelectionChanged="ComboBox_SelectionChanged">
+					<ComboBoxItem>По убыванию</ComboBoxItem>
+					<ComboBoxItem>По возрастанию</ComboBoxItem>
+				</ComboBox>
 
 				<Button Content="Добавить аудиторию"
                         Click="AddClassroom_Click"/>
@@ -34,7 +38,7 @@
 		</Border>
 
 		<!-- Список аудиторий -->
-		<ListBox x:Name="ClassroomListBox" Grid.Row="2">
+		<ListBox x:Name="ClassroomListBox" Grid.Row="2" HorizontalAlignment="Center">
 			<ListBox.ItemsPanel>
 				<ItemsPanelTemplate>
 					<WrapPanel Orientation="Horizontal" HorizontalAlignment="Stretch"/>
@@ -122,15 +126,17 @@
 							<!-- Кнопки -->
 							<StackPanel Grid.Row="0" Grid.Column="1"
                                         Grid.RowSpan="5"
-                                        Orientation="Horizontal"
-                                        VerticalAlignment="Center">
+                                        Orientation="Vertical"
+                                        VerticalAlignment="Bottom">
 								<Button Content="Редактировать"
                                         CommandParameter="{Binding}"
                                         Click="EditClassroom_Click"
-                                        Margin="0,0,5,0"
+                                        Margin="5"
                                         Padding="12,6"/>
 								<Button Content="Удалить"
                                         CommandParameter="{Binding}"
+										HorizontalAlignment="Stretch"
+										Margin="5"
                                         Click="DeleteClassroom_Click"
                                         Classes="danger"
                                         Padding="12,6"/>

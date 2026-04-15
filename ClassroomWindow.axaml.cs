@@ -24,6 +24,14 @@ public partial class ClassroomWindow : Window
                 .Include(e => e.Responsible)
                 .ToList();
 
+            var selectSort = sortByTitle.SelectedIndex;
+
+            switch (selectSort)
+            {
+                case 0: list = list.OrderByDescending(e => int.Parse(e.RoomNumber)).ToList(); break;
+                case 1: list = list.OrderBy(e => int.Parse(e.RoomNumber)).ToList(); break;
+            }
+
             ClassroomListBox.ItemsSource = list;
         }
     }
@@ -110,4 +118,8 @@ public partial class ClassroomWindow : Window
         this.Close();
     }
 
+    private void ComboBox_SelectionChanged(object? sender, Avalonia.Controls.SelectionChangedEventArgs e)
+    {
+        LoadData();
+    }
 }
