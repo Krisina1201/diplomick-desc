@@ -39,5 +39,8 @@
   <ItemGroup>
     <AvaloniaResource Include="Assets\**\*.xaml" />
     <AvaloniaResource Include="Styles.xaml" Condition="Exists('Styles.xaml')" />
+  <None Remove="Assets\app.ico" />
+  <Resource Include="Assets\icon.png" />
+<AvaloniaResource Include="Assets\icon.png" />
   </ItemGroup>
 </Project>

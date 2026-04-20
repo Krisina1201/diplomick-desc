@@ -6,7 +6,8 @@
         x:Class="Diplom.QrWindow"
 		xmlns:models="clr-namespace:Diplom.Models"
         WindowStartupLocation="CenterScreen"
-        Title="FunkyPop - Управление аудиториями"
+        Title="Управление аудиториями"
+		Height="650"
         Background="#f5f5f5">
 
 
@@ -68,12 +69,13 @@
 					<StackPanel Grid.Column="0" Margin="5" Spacing="15" Grid.Row="1">
 						<TextBlock Text="Выберите кабинет" Classes="subheader"/>
 						<ComboBox x:Name="ClassroomComboBox"
+								  SelectionChanged="ComboBox_SelectionChanged"
                                   PlaceholderText="Кабинет..."
                                   Height="40"/>
 						<Button Content="Сгенерировать QR-код"
                                 Click="Generate_qr_click"
                                 />
-						<Button Content="Сохранить изображение"/>
+						<Button Content="Сохранить изображение" Click="Button_Click_1"/>
 					</StackPanel>
 
 					<!-- Правая панель - QR-код -->
@@ -84,12 +86,18 @@
                             CornerRadius="8"
                             Margin="20,0,0,0"
                             Padding="20"
-                            HorizontalAlignment="Center"
-                            VerticalAlignment="Center">
-						<Image x:Name="QrCodeImage"
-                               Width="250"
-                               Height="250"
-                               Stretch="Uniform"/>
+                            >
+						<StackPanel HorizontalAlignment="Center"
+                            VerticalAlignment="Center" Orientation="Vertical">
+							<Image x:Name="QrCodeImage"
+								   Width="250"
+								   Height="250"
+								   Stretch="Uniform"/>
+							<SelectableTextBlock x:Name="qrPath"
+									   Margin="0,10,0,0"
+									   Cursor="IBeam"
+									   HorizontalAlignment="Center"/>
+						</StackPanel>
 					</Border>
 
 					<!-- Кнопка сохранения -->

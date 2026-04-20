@@ -22,6 +22,10 @@
 		<SolidColorBrush x:Key="ErrorBrush" Color="{StaticResource Error}"/>
 	</Styles.Resources>
 
+	<Style Selector="Window">
+		<Setter Property="Icon" Value="avares://Diplom/Assets/icon.png" />
+	</Style>
+
 	<!-- Стили для кнопок -->
 	<Style Selector="Button">
 		<Setter Property="Background" Value="{StaticResource PrimaryBrush}"/>
